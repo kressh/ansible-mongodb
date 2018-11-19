@@ -1,0 +1,21 @@
+---
+- name: ensure mongodb storage dir
+  file:
+    dest: '{{ item }}'
+    state: directory
+  with_items:
+    - '{{ mongodb_data_dir }}'
+
+- name: run mongodb container
+  docker_container:
+    state: started
+    restart: yes
+    recreate: yes
+    pull: true
+    name: '{{ mongodb_docker_container_name }}'
+    image: '{{ mongodb_docker_image }}'
+    restart_policy: always
+    env: '{{ mongodb_docker_env }}'
+    published_ports: '{{ mongodb_docker_published_ports }}'
+    networks: '{{ mongodb_docker_networks }}'
+    volumes: '{{ mongodb_docker_volumes }}'
