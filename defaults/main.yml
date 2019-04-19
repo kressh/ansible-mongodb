@@ -2,7 +2,7 @@
 mongodb_version: 4
 mongodb_docker_container_name: mongodb
 mongodb_docker_image: mongo:{{ mongodb_version }}
-mongodb_docker_data_dir: /var/lib/mongodb/data
+mongodb_data_dir: /var/lib/{{ mongodb_docker_container_name }}/data
 mongodb_docker_networks: []
 mongodb_docker_env: {}
 mongodb_docker_published_ports: []
